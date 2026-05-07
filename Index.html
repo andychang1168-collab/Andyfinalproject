@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Daily Mood & Stress Self-Check</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f6f7;
+      text-align: center;
+      padding: 30px;
+    }
+
+    .container {
+      max-width: 650px;
+      margin: auto;
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      color: #2f4f4f;
+    }
+
+    button {
+      padding: 10px 18px;
+      margin: 8px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .mood-btn {
+      background: #d7eef2;
+    }
+
+    .submit-btn {
+      background: #4caf50;
+      color: white;
+    }
+
+    .reset-btn {
+      background: #777;
+      color: white;
+    }
+
+    textarea {
+      width: 90%;
+      height: 80px;
+      margin-top: 10px;
+      border-radius: 8px;
+      padding: 10px;
+    }
+
+    .question {
+      text-align: left;
+      margin: 15px 0;
+    }
+
+    #result {
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 10px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Daily Mood & Stress Self-Check</h1>
+    <p>Check your mood and stress level today.</p>
+
+    <h2>How do you feel today?</h2>
+    <button class="mood-btn" onclick="chooseMood('Happy')">😊 Happy</button>
+    <button class="mood-btn" onclick="chooseMood('Normal')">😐 Normal</button>
+    <button class="mood-btn" onclick="chooseMood('Sad')">😢 Sad</button>
+
+    <p id="moodText"></p>
+
+    <h2>5-Question Stress Quiz</h2>
+
+    <div class="question">
+      <p>1. I feel tired today.</p>
+      <input type="radio" name="q1" value="0"> No
+      <input type="radio" name="q1" value="1"> A little
+      <input type="radio" name="q1" value="2"> Yes
+    </div>
+
+    <div class="question">
+      <p>2. I feel nervous or worried.</p>
+      <input type="radio" name="q2" value="0"> No
+      <input type="radio" name="q2" value="1"> A little
+      <input type="radio" name="q2" value="2"> Yes
+    </div>
+
+    <div class="question">
+      <p>3. I cannot focus well.</p>
+      <input type="radio" name="q3" value="0"> No
+      <input type="radio" name="q3" value="1"> A little
+      <input type="radio" name="q3" value="2"> Yes
+    </div>
+
+    <div class="question">
+      <p>4. I feel pressure from school or life.</p>
+      <input type="radio" name="q4" value="0"> No
+      <input type="radio" name="q4" value="1"> A little
+      <input type="radio" name="q4" value="2"> Yes
+    </div>
+
+    <div class="question">
+      <p>5. I did not sleep well.</p>
+      <input type="radio" name="q5" value="0"> No
+      <input type="radio" name="q5" value="1"> A little
+      <input type="radio" name="q5" value="2"> Yes
+    </div>
+
+    <h2>Daily Journal</h2>
+    <p>Write one sentence about your day:</p>
+    <textarea id="journal" placeholder="Today I feel..."></textarea>
+
+    <br><br>
+    <button class="submit-btn" onclick="calculateStress()">Submit</button>
+    <button class="reset-btn" onclick="tryAgain()">Try Again</button>
+
+    <div id="result"></div>
+  </div>
+
+  <script>
+    let selectedMood = "";
+
+    function chooseMood(mood) {
+      selectedMood = mood;
+      document.getElementById("moodText").innerHTML = "Your mood today: " + mood;
+    }
+
+    function calculateStress() {
+      let score = 0;
+
+      for (let i = 1; i <= 5; i++) {
+        let answer = document.querySelector('input[name="q' + i + '"]:checked');
+
+        if (answer) {
+          score += parseInt(answer.value);
+        } else {
+          alert("Please answer all questions.");
+          return;
+        }
+      }
+
+      let resultBox = document.getElementById("result");
+      let level = "";
+      let advice = "";
+      let color = "";
+
+      if (score <= 3) {
+        level = "Low Stress";
+        advice = "You are doing well. Keep going and take care of yourself.";
+        color = "#c8f7c5";
+      } else if (score <= 6) {
+        level = "Medium Stress";
+        advice = "You may need a short break. Try walking, drinking water, or resting.";
+        color = "#fff3b0";
+      } else {
+        level = "High Stress";
+        advice = "You should try deep breathing and talk to a trusted friend, teacher, or counselor.";
+        color = "#ffb3b3";
+      }
+
+      let journalText = document.getElementById("journal").value;
+
+      resultBox.style.backgroundColor = color;
+      resultBox.innerHTML = `
+        <h2>Result</h2>
+        <p><strong>Mood:</strong> ${selectedMood || "Not selected"}</p>
+        <p><strong>Stress Score:</strong> ${score} / 10</p>
+        <p><strong>Stress Level:</strong> ${level}</p>
+        <p><strong>Advice:</strong> ${advice}</p>
+        <p><strong>Journal:</strong> ${journalText || "No journal written."}</p>
+      `;
+    }
+
+    function tryAgain() {
+      location.reload();
+    }
+  </script>
+</body>
+</html>
