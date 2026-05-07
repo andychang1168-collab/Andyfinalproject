@@ -1,157 +1,270 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Daily Mood & Stress Self-Check</title>
+
   <style>
     body {
+      margin: 0;
       font-family: Arial, sans-serif;
-      background: #f2f6f7;
+      background: linear-gradient(135deg, #ffe6f0, #e0f7fa, #fff9c4);
+      color: #333;
+    }
+
+    header {
+      background: linear-gradient(90deg, #ff8a80, #ffcc80, #80deea);
+      color: white;
       text-align: center;
-      padding: 30px;
+      padding: 40px 20px;
     }
 
-    .container {
-      max-width: 650px;
-      margin: auto;
+    header h1 {
+      font-size: 42px;
+      margin: 0;
+    }
+
+    nav {
       background: white;
-      padding: 25px;
-      border-radius: 15px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      padding: 15px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      z-index: 10;
     }
 
-    h1 {
-      color: #2f4f4f;
-    }
-
-    button {
-      padding: 10px 18px;
-      margin: 8px;
+    nav button {
+      background: #7e57c2;
+      color: white;
       border: none;
-      border-radius: 8px;
+      padding: 10px 18px;
+      margin: 6px;
+      border-radius: 20px;
       cursor: pointer;
-      font-size: 16px;
+      font-size: 15px;
     }
 
-    .mood-btn {
-      background: #d7eef2;
+    nav button:hover {
+      background: #5e35b1;
     }
 
-    .submit-btn {
-      background: #4caf50;
-      color: white;
+    section {
+      display: none;
+      max-width: 800px;
+      margin: 30px auto;
+      padding: 30px;
+      background: white;
+      border-radius: 25px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.12);
     }
 
-    .reset-btn {
-      background: #777;
-      color: white;
+    section.active {
+      display: block;
     }
 
-    textarea {
-      width: 90%;
-      height: 80px;
-      margin-top: 10px;
-      border-radius: 8px;
-      padding: 10px;
+    h2 {
+      color: #7e57c2;
+      font-size: 30px;
     }
 
-    .question {
-      text-align: left;
+    .card {
+      background: #f3e5f5;
+      padding: 20px;
+      border-radius: 18px;
       margin: 15px 0;
     }
 
-    #result {
-      margin-top: 20px;
+    .mood-btn {
+      font-size: 24px;
+      padding: 18px;
+      margin: 10px;
+      border: none;
+      border-radius: 18px;
+      cursor: pointer;
+      background: #b2ebf2;
+    }
+
+    .mood-btn:hover {
+      background: #80deea;
+      transform: scale(1.05);
+    }
+
+    .question {
+      background: #fff3e0;
       padding: 15px;
-      border-radius: 10px;
+      border-radius: 15px;
+      margin: 12px 0;
+    }
+
+    input[type="radio"] {
+      margin: 10px;
+    }
+
+    textarea {
+      width: 95%;
+      height: 120px;
+      padding: 15px;
+      border-radius: 15px;
+      border: 2px solid #ce93d8;
+      font-size: 16px;
+    }
+
+    .main-btn {
+      background: #26a69a;
+      color: white;
+      border: none;
+      padding: 14px 25px;
+      border-radius: 25px;
+      font-size: 17px;
+      margin: 10px;
+      cursor: pointer;
+    }
+
+    .main-btn:hover {
+      background: #00897b;
+    }
+
+    #resultBox {
+      padding: 25px;
+      border-radius: 20px;
+      margin-top: 20px;
       font-size: 18px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #555;
     }
   </style>
 </head>
 
 <body>
-  <div class="container">
-    <h1>Daily Mood & Stress Self-Check</h1>
-    <p>Check your mood and stress level today.</p>
 
+  <header>
+    <h1>🌈 Daily Mood & Stress Self-Check</h1>
+    <p>Check your mood, stress level, and mental health every day.</p>
+  </header>
+
+  <nav>
+    <button onclick="showPage('home')">Home</button>
+    <button onclick="showPage('mood')">Mood Check</button>
+    <button onclick="showPage('quiz')">Stress Quiz</button>
+    <button onclick="showPage('journal')">Journal</button>
+    <button onclick="showPage('result')">Result</button>
+  </nav>
+
+  <section id="home" class="active">
+    <h2>Welcome 💖</h2>
+    <div class="card">
+      <p>This website helps students understand their emotions and stress level.</p>
+      <p>You can check your daily mood, answer a short stress quiz, write a journal, and get simple advice.</p>
+    </div>
+    <button class="main-btn" onclick="showPage('mood')">Start Now</button>
+  </section>
+
+  <section id="mood">
     <h2>How do you feel today?</h2>
-    <button class="mood-btn" onclick="chooseMood('Happy')">😊 Happy</button>
-    <button class="mood-btn" onclick="chooseMood('Normal')">😐 Normal</button>
-    <button class="mood-btn" onclick="chooseMood('Sad')">😢 Sad</button>
+    <button class="mood-btn" onclick="chooseMood('Happy 😊')">😊 Happy</button>
+    <button class="mood-btn" onclick="chooseMood('Normal 😐')">😐 Normal</button>
+    <button class="mood-btn" onclick="chooseMood('Sad 😢')">😢 Sad</button>
+    <button class="mood-btn" onclick="chooseMood('Angry 😠')">😠 Angry</button>
+    <button class="mood-btn" onclick="chooseMood('Tired 😴')">😴 Tired</button>
 
-    <p id="moodText"></p>
+    <h3 id="moodText"></h3>
+    <button class="main-btn" onclick="showPage('quiz')">Next: Stress Quiz</button>
+  </section>
 
+  <section id="quiz">
     <h2>5-Question Stress Quiz</h2>
 
     <div class="question">
       <p>1. I feel tired today.</p>
-      <input type="radio" name="q1" value="0"> No
-      <input type="radio" name="q1" value="1"> A little
-      <input type="radio" name="q1" value="2"> Yes
+      <label><input type="radio" name="q1" value="0"> No</label>
+      <label><input type="radio" name="q1" value="1"> A little</label>
+      <label><input type="radio" name="q1" value="2"> Yes</label>
     </div>
 
     <div class="question">
       <p>2. I feel nervous or worried.</p>
-      <input type="radio" name="q2" value="0"> No
-      <input type="radio" name="q2" value="1"> A little
-      <input type="radio" name="q2" value="2"> Yes
+      <label><input type="radio" name="q2" value="0"> No</label>
+      <label><input type="radio" name="q2" value="1"> A little</label>
+      <label><input type="radio" name="q2" value="2"> Yes</label>
     </div>
 
     <div class="question">
       <p>3. I cannot focus well.</p>
-      <input type="radio" name="q3" value="0"> No
-      <input type="radio" name="q3" value="1"> A little
-      <input type="radio" name="q3" value="2"> Yes
+      <label><input type="radio" name="q3" value="0"> No</label>
+      <label><input type="radio" name="q3" value="1"> A little</label>
+      <label><input type="radio" name="q3" value="2"> Yes</label>
     </div>
 
     <div class="question">
       <p>4. I feel pressure from school or life.</p>
-      <input type="radio" name="q4" value="0"> No
-      <input type="radio" name="q4" value="1"> A little
-      <input type="radio" name="q4" value="2"> Yes
+      <label><input type="radio" name="q4" value="0"> No</label>
+      <label><input type="radio" name="q4" value="1"> A little</label>
+      <label><input type="radio" name="q4" value="2"> Yes</label>
     </div>
 
     <div class="question">
       <p>5. I did not sleep well.</p>
-      <input type="radio" name="q5" value="0"> No
-      <input type="radio" name="q5" value="1"> A little
-      <input type="radio" name="q5" value="2"> Yes
+      <label><input type="radio" name="q5" value="0"> No</label>
+      <label><input type="radio" name="q5" value="1"> A little</label>
+      <label><input type="radio" name="q5" value="2"> Yes</label>
     </div>
 
-    <h2>Daily Journal</h2>
+    <button class="main-btn" onclick="showPage('journal')">Next: Journal</button>
+  </section>
+
+  <section id="journal">
+    <h2>Daily Journal ✍️</h2>
     <p>Write one sentence about your day:</p>
-    <textarea id="journal" placeholder="Today I feel..."></textarea>
+    <textarea id="journalText" placeholder="Today I feel..."></textarea>
+    <br>
+    <button class="main-btn" onclick="calculateResult()">Show Result</button>
+  </section>
 
-    <br><br>
-    <button class="submit-btn" onclick="calculateStress()">Submit</button>
-    <button class="reset-btn" onclick="tryAgain()">Try Again</button>
+  <section id="result">
+    <h2>Your Result 🌟</h2>
+    <div id="resultBox">
+      <p>Please complete the mood check and quiz first.</p>
+    </div>
+    <button class="main-btn" onclick="restart()">Try Again</button>
+  </section>
 
-    <div id="result"></div>
-  </div>
+  <footer>
+    <p>SDG 3: Good Health and Well-Being</p>
+  </footer>
 
   <script>
     let selectedMood = "";
 
-    function chooseMood(mood) {
-      selectedMood = mood;
-      document.getElementById("moodText").innerHTML = "Your mood today: " + mood;
+    function showPage(pageId) {
+      const pages = document.querySelectorAll("section");
+      pages.forEach(page => page.classList.remove("active"));
+      document.getElementById(pageId).classList.add("active");
     }
 
-    function calculateStress() {
+    function chooseMood(mood) {
+      selectedMood = mood;
+      document.getElementById("moodText").innerText = "Your mood today: " + mood;
+    }
+
+    function calculateResult() {
       let score = 0;
 
       for (let i = 1; i <= 5; i++) {
         let answer = document.querySelector('input[name="q' + i + '"]:checked');
-
-        if (answer) {
-          score += parseInt(answer.value);
-        } else {
-          alert("Please answer all questions.");
+        if (!answer) {
+          alert("Please answer all stress quiz questions.");
+          showPage("quiz");
           return;
         }
+        score += Number(answer.value);
       }
 
-      let resultBox = document.getElementById("result");
       let level = "";
       let advice = "";
       let color = "";
@@ -159,33 +272,35 @@
       if (score <= 3) {
         level = "Low Stress";
         advice = "You are doing well. Keep going and take care of yourself.";
-        color = "#c8f7c5";
+        color = "#c8e6c9";
       } else if (score <= 6) {
         level = "Medium Stress";
-        advice = "You may need a short break. Try walking, drinking water, or resting.";
-        color = "#fff3b0";
+        advice = "Take a short break, drink water, listen to music, or go outside for a walk.";
+        color = "#fff59d";
       } else {
         level = "High Stress";
-        advice = "You should try deep breathing and talk to a trusted friend, teacher, or counselor.";
-        color = "#ffb3b3";
+        advice = "Try deep breathing and talk to a trusted friend, teacher, family member, or counselor.";
+        color = "#ffcdd2";
       }
 
-      let journalText = document.getElementById("journal").value;
+      let journal = document.getElementById("journalText").value;
 
-      resultBox.style.backgroundColor = color;
-      resultBox.innerHTML = `
-        <h2>Result</h2>
+      document.getElementById("resultBox").style.background = color;
+      document.getElementById("resultBox").innerHTML = `
         <p><strong>Mood:</strong> ${selectedMood || "Not selected"}</p>
         <p><strong>Stress Score:</strong> ${score} / 10</p>
         <p><strong>Stress Level:</strong> ${level}</p>
         <p><strong>Advice:</strong> ${advice}</p>
-        <p><strong>Journal:</strong> ${journalText || "No journal written."}</p>
+        <p><strong>Journal:</strong> ${journal || "No journal written."}</p>
       `;
+
+      showPage("result");
     }
 
-    function tryAgain() {
+    function restart() {
       location.reload();
     }
   </script>
+
 </body>
 </html>
