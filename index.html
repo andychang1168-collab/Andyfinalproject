@@ -14,10 +14,10 @@
     }
 
     header {
-      background: linear-gradient(90deg, #ff8a80, #ffcc80, #80deea);
+      background: linear-gradient(90deg, #ff8a80, #ffcc80, #80deea, #b39ddb);
       color: white;
       text-align: center;
-      padding: 40px 20px;
+      padding: 45px 20px;
     }
 
     header h1 {
@@ -39,11 +39,11 @@
       background: #7e57c2;
       color: white;
       border: none;
-      padding: 10px 18px;
-      margin: 6px;
+      padding: 10px 16px;
+      margin: 5px;
       border-radius: 20px;
       cursor: pointer;
-      font-size: 15px;
+      font-size: 14px;
     }
 
     nav button:hover {
@@ -52,7 +52,7 @@
 
     section {
       display: none;
-      max-width: 800px;
+      max-width: 850px;
       margin: 30px auto;
       padding: 30px;
       background: white;
@@ -74,6 +74,30 @@
       padding: 20px;
       border-radius: 18px;
       margin: 15px 0;
+    }
+
+    .help-card {
+      background: #e3f2fd;
+      padding: 20px;
+      border-radius: 18px;
+      margin: 15px 0;
+      border-left: 8px solid #42a5f5;
+    }
+
+    .warning-card {
+      background: #ffebee;
+      padding: 20px;
+      border-radius: 18px;
+      margin: 15px 0;
+      border-left: 8px solid #ef5350;
+    }
+
+    .success-card {
+      background: #e8f5e9;
+      padding: 20px;
+      border-radius: 18px;
+      margin: 15px 0;
+      border-left: 8px solid #66bb6a;
     }
 
     .mood-btn {
@@ -98,17 +122,17 @@
       margin: 12px 0;
     }
 
-    input[type="radio"] {
-      margin: 10px;
-    }
-
-    textarea {
+    textarea, input[type="text"] {
       width: 95%;
-      height: 120px;
       padding: 15px;
       border-radius: 15px;
       border: 2px solid #ce93d8;
       font-size: 16px;
+      margin-top: 10px;
+    }
+
+    textarea {
+      height: 120px;
     }
 
     .main-btn {
@@ -126,11 +150,48 @@
       background: #00897b;
     }
 
+    .danger-btn {
+      background: #e53935;
+      color: white;
+      border: none;
+      padding: 14px 25px;
+      border-radius: 25px;
+      font-size: 17px;
+      margin: 10px;
+      cursor: pointer;
+    }
+
     #resultBox {
       padding: 25px;
       border-radius: 20px;
       margin-top: 20px;
       font-size: 18px;
+    }
+
+    a {
+      color: #1565c0;
+      font-weight: bold;
+    }
+
+    .breathing-circle {
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #80deea, #ce93d8);
+      margin: 30px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      font-size: 22px;
+      animation: breathe 6s infinite;
+    }
+
+    @keyframes breathe {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.25); }
+      100% { transform: scale(1); }
     }
 
     footer {
@@ -150,9 +211,12 @@
 
   <nav>
     <button onclick="showPage('home')">Home</button>
-    <button onclick="showPage('mood')">Mood Check</button>
-    <button onclick="showPage('quiz')">Stress Quiz</button>
+    <button onclick="showPage('mood')">Mood</button>
+    <button onclick="showPage('quiz')">Quiz</button>
     <button onclick="showPage('journal')">Journal</button>
+    <button onclick="showPage('breathing')">Breathing</button>
+    <button onclick="showPage('goals')">Goals</button>
+    <button onclick="showPage('help')">Help</button>
     <button onclick="showPage('result')">Result</button>
   </nav>
 
@@ -160,7 +224,7 @@
     <h2>Welcome 💖</h2>
     <div class="card">
       <p>This website helps students understand their emotions and stress level.</p>
-      <p>You can check your daily mood, answer a short stress quiz, write a journal, and get simple advice.</p>
+      <p>You can check your daily mood, answer a short stress quiz, write a journal, try breathing exercises, and find support resources.</p>
     </div>
     <button class="main-btn" onclick="showPage('mood')">Start Now</button>
   </section>
@@ -172,8 +236,11 @@
     <button class="mood-btn" onclick="chooseMood('Sad 😢')">😢 Sad</button>
     <button class="mood-btn" onclick="chooseMood('Angry 😠')">😠 Angry</button>
     <button class="mood-btn" onclick="chooseMood('Tired 😴')">😴 Tired</button>
+    <button class="mood-btn" onclick="chooseMood('Anxious 😟')">😟 Anxious</button>
 
     <h3 id="moodText"></h3>
+    <div id="moodAdvice" class="success-card"></div>
+
     <button class="main-btn" onclick="showPage('quiz')">Next: Stress Quiz</button>
   </section>
 
@@ -220,10 +287,68 @@
 
   <section id="journal">
     <h2>Daily Journal ✍️</h2>
-    <p>Write one sentence about your day:</p>
+    <p>Write about your day:</p>
     <textarea id="journalText" placeholder="Today I feel..."></textarea>
+
+    <p>One thing I am thankful for:</p>
+    <input type="text" id="gratefulText" placeholder="I am thankful for..." />
+
     <br>
+    <button class="main-btn" onclick="showPage('breathing')">Next: Breathing</button>
+  </section>
+
+  <section id="breathing">
+    <h2>Breathing Exercise 🌬️</h2>
+    <div class="card">
+      <p>Follow the circle. Breathe in when it grows, breathe out when it becomes smaller.</p>
+    </div>
+
+    <div class="breathing-circle">Breathe</div>
+
+    <button class="main-btn" onclick="showPage('goals')">Next: Goals</button>
+  </section>
+
+  <section id="goals">
+    <h2>Small Goal for Today 🎯</h2>
+    <div class="card">
+      <p>Choose one simple action to help yourself today:</p>
+      <label><input type="checkbox"> Drink more water</label><br><br>
+      <label><input type="checkbox"> Take a 10-minute walk</label><br><br>
+      <label><input type="checkbox"> Listen to relaxing music</label><br><br>
+      <label><input type="checkbox"> Talk to a friend</label><br><br>
+      <label><input type="checkbox"> Sleep earlier tonight</label>
+    </div>
+
     <button class="main-btn" onclick="calculateResult()">Show Result</button>
+  </section>
+
+  <section id="help">
+    <h2>Help & Support Resources ☎️</h2>
+
+    <div class="warning-card">
+      <h3>Emergency</h3>
+      <p>If you or someone else is in immediate danger, call your local emergency number now.</p>
+      <p><strong>Taiwan Emergency:</strong> 110 Police / 119 Fire & Ambulance</p>
+    </div>
+
+    <div class="help-card">
+      <h3>Taiwan Mental Health Support</h3>
+      <p><strong>1925 Lifeline:</strong> Call 1925</p>
+      <p><strong>1995 Life Line:</strong> Call 1995</p>
+      <p><strong>1980 Teacher Chang Counseling:</strong> Call 1980</p>
+    </div>
+
+    <div class="help-card">
+      <h3>International Support Websites</h3>
+      <p><a href="https://findahelpline.com/" target="_blank">Find a Helpline</a></p>
+      <p><a href="https://www.who.int/health-topics/mental-health" target="_blank">WHO Mental Health</a></p>
+      <p><a href="https://www.unicef.org/mental-health" target="_blank">UNICEF Mental Health</a></p>
+    </div>
+
+    <div class="success-card">
+      <h3>People You Can Talk To</h3>
+      <p>A trusted friend, family member, teacher, school counselor, or doctor.</p>
+    </div>
   </section>
 
   <section id="result">
@@ -231,7 +356,8 @@
     <div id="resultBox">
       <p>Please complete the mood check and quiz first.</p>
     </div>
-    <button class="main-btn" onclick="restart()">Try Again</button>
+    <button class="main-btn" onclick="showPage('help')">Need Help?</button>
+    <button class="danger-btn" onclick="restart()">Try Again</button>
   </section>
 
   <footer>
@@ -245,11 +371,30 @@
       const pages = document.querySelectorAll("section");
       pages.forEach(page => page.classList.remove("active"));
       document.getElementById(pageId).classList.add("active");
+      window.scrollTo(0, 0);
     }
 
     function chooseMood(mood) {
       selectedMood = mood;
       document.getElementById("moodText").innerText = "Your mood today: " + mood;
+
+      let advice = "";
+
+      if (mood.includes("Happy")) {
+        advice = "Great! Keep your positive energy and share it with others.";
+      } else if (mood.includes("Normal")) {
+        advice = "That is okay. Try doing one small thing that makes you feel better.";
+      } else if (mood.includes("Sad")) {
+        advice = "It is okay to feel sad. Try writing your feelings or talking to someone you trust.";
+      } else if (mood.includes("Angry")) {
+        advice = "Take a short break. Breathe slowly before you react.";
+      } else if (mood.includes("Tired")) {
+        advice = "Rest is important. Drink water and try to sleep earlier tonight.";
+      } else if (mood.includes("Anxious")) {
+        advice = "Try the breathing exercise page and remind yourself that you are not alone.";
+      }
+
+      document.getElementById("moodAdvice").innerText = advice;
     }
 
     function calculateResult() {
@@ -268,22 +413,27 @@
       let level = "";
       let advice = "";
       let color = "";
+      let extraHelp = "";
 
       if (score <= 3) {
         level = "Low Stress";
         advice = "You are doing well. Keep going and take care of yourself.";
         color = "#c8e6c9";
+        extraHelp = "Keep a healthy routine and continue checking your mood.";
       } else if (score <= 6) {
         level = "Medium Stress";
         advice = "Take a short break, drink water, listen to music, or go outside for a walk.";
         color = "#fff59d";
+        extraHelp = "Try the breathing exercise and talk to someone if stress continues.";
       } else {
         level = "High Stress";
         advice = "Try deep breathing and talk to a trusted friend, teacher, family member, or counselor.";
         color = "#ffcdd2";
+        extraHelp = "Please visit the Help page. If you feel unsafe, call emergency support immediately.";
       }
 
       let journal = document.getElementById("journalText").value;
+      let grateful = document.getElementById("gratefulText").value;
 
       document.getElementById("resultBox").style.background = color;
       document.getElementById("resultBox").innerHTML = `
@@ -291,7 +441,9 @@
         <p><strong>Stress Score:</strong> ${score} / 10</p>
         <p><strong>Stress Level:</strong> ${level}</p>
         <p><strong>Advice:</strong> ${advice}</p>
+        <p><strong>Extra Support:</strong> ${extraHelp}</p>
         <p><strong>Journal:</strong> ${journal || "No journal written."}</p>
+        <p><strong>Grateful for:</strong> ${grateful || "Not written."}</p>
       `;
 
       showPage("result");
