@@ -195,6 +195,10 @@
       font-weight: bold;
     }
 
+    nav a {
+      color: white;
+    }
+
     footer {
       text-align: center;
       padding: 25px;
@@ -207,11 +211,10 @@
 
   <header>
     <h1>🌈 Daily Mood & Stress Self-Check</h1>
-    <p>One-page mental health self-check website</p>
+    <p>Check your mood, stress level, and mental health every day.</p>
   </header>
 
   <nav>
-    <a href="#topic">Topic</a>
     <a href="#check">Self-Check</a>
     <a href="#breathing">Breathing</a>
     <a href="#help">Help</a>
@@ -219,24 +222,6 @@
   </nav>
 
   <div class="container">
-
-    <div id="topic" class="section">
-      <h2>Review Our Topic</h2>
-      <div class="card purple">
-        <p>This website is designed for students to check their mood and stress level every day.</p>
-        <p>It supports SDG 3: Good Health and Well-Being.</p>
-      </div>
-
-      <h2>Current Progress</h2>
-      <div class="card green">
-        <p>Completed: Mood check, stress quiz, journal, result calculation, color feedback, breathing exercise, and help resources.</p>
-      </div>
-
-      <h2>Not Yet Completed</h2>
-      <div class="card blue">
-        <p>Future improvements: save mood history, add charts, create login system, and connect to real counseling resources.</p>
-      </div>
-    </div>
 
     <div id="check" class="section">
       <h2>Daily Self-Check</h2>
@@ -425,7 +410,6 @@
 
       let journal = document.getElementById("journalText").value;
       let grateful = document.getElementById("gratefulText").value;
-
       let percentage = score * 10;
 
       document.getElementById("progressBar").style.width = percentage + "%";
