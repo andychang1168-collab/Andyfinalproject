@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daily Mood & Stress Self-Check</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="top-controls">
+    <select id="languageSelect" onchange="changeLanguage()">
+      <option value="en">English</option>
+      <option value="zh">繁體中文</option>
+    </select>
+    <button id="darkBtn" onclick="toggleDarkMode()">🌙 Dark</button>
+  </div>
+
+  <header class="hero">
+    <div class="hero-text">
+      <p class="tag" data-en="SDG 3: Good Health and Well-Being" data-zh="SDG 3：良好健康與福祉">SDG 3: Good Health and Well-Being</p>
+      <h1 data-en="Daily Mood & Stress Self-Check" data-zh="每日心情與壓力自我檢測">Daily Mood & Stress Self-Check</h1>
+      <p class="subtitle" data-en="A colorful mental health website for students." data-zh="一個為學生設計的彩色心理健康網站。">A colorful mental health website for students.</p>
+      <button class="hero-btn" onclick="showPage('mood')" data-en="Start Now" data-zh="開始使用">Start Now</button>
+    </div>
+    <div class="hero-image"><div class="sun">☀️</div><div class="person">🧘‍♀️</div><div class="bubble b1">😊</div><div class="bubble b2">🌿</div><div class="bubble b3">💖</div></div>
+  </header>
+
+  <nav>
+    <button onclick="showPage('home')" data-en="🏠 Home" data-zh="🏠 首頁">🏠 Home</button>
+    <button onclick="showPage('mood')" data-en="😊 Mood" data-zh="😊 心情">😊 Mood</button>
+    <button onclick="showPage('quiz')" data-en="📋 Quiz" data-zh="📋 測驗">📋 Quiz</button>
+    <button onclick="showPage('journal')" data-en="✍️ Journal" data-zh="✍️ 日記">✍️ Journal</button>
+    <button onclick="showPage('breathing')" data-en="🌬️ Breathing" data-zh="🌬️ 呼吸">🌬️ Breathing</button>
+    <button onclick="showPage('statistics')" data-en="📊 Statistics" data-zh="📊 統計">📊 Statistics</button>
+    <button onclick="showPage('feedback')" data-en="💬 Feedback" data-zh="💬 回饋">💬 Feedback</button>
+    <button onclick="showPage('help')" data-en="☎️ Help" data-zh="☎️ 幫助">☎️ Help</button>
+    <button onclick="showPage('result')" data-en="🌟 Result" data-zh="🌟 結果">🌟 Result</button>
+  </nav>
+
+  <main class="container">
+    <section id="home" class="page active">
+      <div class="page-title"><span>🏠</span><h2 data-en="Home" data-zh="首頁">Home</h2></div>
+      <div class="intro-grid">
+        <div class="card gradient-card"><h3 data-en="About Our Project" data-zh="關於我們的專題">About Our Project</h3><p data-en="This website helps students understand their mood and stress level through a simple daily self-check." data-zh="這個網站透過簡單的每日自我檢測，幫助學生了解自己的心情與壓力程度。">This website helps students understand their mood and stress level through a simple daily self-check.</p><p data-en="Users can check mood, answer a stress quiz, write a journal, try breathing exercises, and find help resources." data-zh="使用者可以檢查心情、回答壓力測驗、寫日記、進行呼吸練習，並找到相關幫助資源。">Users can check mood, answer a stress quiz, write a journal, try breathing exercises, and find help resources.</p></div>
+        <div class="image-card"><div class="big-emoji">🌈</div><h3 data-en="Simple. Colorful. Helpful." data-zh="簡單、彩色、有幫助。">Simple. Colorful. Helpful.</h3><p data-en="Mental health awareness can start with one small daily check." data-zh="心理健康意識可以從每天一個小小的檢查開始。">Mental health awareness can start with one small daily check.</p></div>
+      </div>
+      <div class="feature-grid"><div class="mini-card c1" data-en="😊<br>Mood Check" data-zh="😊<br>心情檢查">😊<br>Mood Check</div><div class="mini-card c2" data-en="📋<br>Stress Quiz" data-zh="📋<br>壓力測驗">📋<br>Stress Quiz</div><div class="mini-card c3" data-en="✍️<br>Daily Journal" data-zh="✍️<br>每日日記">✍️<br>Daily Journal</div><div class="mini-card c4" data-en="🌬️<br>Breathing" data-zh="🌬️<br>呼吸練習">🌬️<br>Breathing</div><div class="mini-card c5" data-en="📊<br>Statistics" data-zh="📊<br>統計分析">📊<br>Statistics</div><div class="mini-card c6" data-en="☎️<br>Help Center" data-zh="☎️<br>幫助中心">☎️<br>Help Center</div></div>
+      <button class="main-btn" onclick="showPage('mood')" data-en="Start Self-Check" data-zh="開始自我檢測">Start Self-Check</button>
+    </section>
+
+    <section id="mood" class="page"><div class="page-title"><span>😊</span><h2 data-en="Mood Check" data-zh="心情檢查">Mood Check</h2></div><div class="card pink-card"><p data-en="How do you feel today? Choose one mood below." data-zh="你今天感覺如何？請選擇一個心情。">How do you feel today? Choose one mood below.</p></div><div class="mood-area"><button class="mood-btn happy" onclick="chooseMood('Happy 😊')" data-en="😊 Happy" data-zh="😊 開心">😊 Happy</button><button class="mood-btn normal" onclick="chooseMood('Normal 😐')" data-en="😐 Normal" data-zh="😐 普通">😐 Normal</button><button class="mood-btn sad" onclick="chooseMood('Sad 😢')" data-en="😢 Sad" data-zh="😢 難過">😢 Sad</button><button class="mood-btn angry" onclick="chooseMood('Angry 😠')" data-en="😠 Angry" data-zh="😠 生氣">😠 Angry</button><button class="mood-btn tired" onclick="chooseMood('Tired 😴')" data-en="😴 Tired" data-zh="😴 疲累">😴 Tired</button><button class="mood-btn anxious" onclick="chooseMood('Anxious 😟')" data-en="😟 Anxious" data-zh="😟 焦慮">😟 Anxious</button></div><h3 id="moodText" data-en="No mood selected yet." data-zh="尚未選擇心情。">No mood selected yet.</h3><div id="moodAdvice" class="card green-card" data-en="Choose your mood to get advice." data-zh="選擇心情後會顯示建議。">Choose your mood to get advice.</div><button class="main-btn" onclick="showPage('quiz')" data-en="Next: Stress Quiz" data-zh="下一步：壓力測驗">Next: Stress Quiz</button></section>
+
+    <section id="quiz" class="page"><div class="page-title"><span>📋</span><h2 data-en="Stress Quiz" data-zh="壓力測驗">Stress Quiz</h2></div><div class="card yellow-card"><p data-en="Answer five simple questions. Each answer will calculate your stress score from 0 to 10." data-zh="回答五個簡單問題，系統會計算你的壓力分數，範圍是 0 到 10 分。">Answer five simple questions. Each answer will calculate your stress score from 0 to 10.</p></div>
+      <div class="question"><p data-en="1. I feel tired today." data-zh="1. 我今天覺得很累。">1. I feel tired today.</p><label><input type="radio" name="q1" value="0"> <span data-en="No" data-zh="不會">No</span></label><label><input type="radio" name="q1" value="1"> <span data-en="A little" data-zh="有一點">A little</span></label><label><input type="radio" name="q1" value="2"> <span data-en="Yes" data-zh="會">Yes</span></label></div>
+      <div class="question"><p data-en="2. I feel nervous or worried." data-zh="2. 我感到緊張或擔心。">2. I feel nervous or worried.</p><label><input type="radio" name="q2" value="0"> <span data-en="No" data-zh="不會">No</span></label><label><input type="radio" name="q2" value="1"> <span data-en="A little" data-zh="有一點">A little</span></label><label><input type="radio" name="q2" value="2"> <span data-en="Yes" data-zh="會">Yes</span></label></div>
+      <div class="question"><p data-en="3. I cannot focus well." data-zh="3. 我無法好好專心。">3. I cannot focus well.</p><label><input type="radio" name="q3" value="0"> <span data-en="No" data-zh="不會">No</span></label><label><input type="radio" name="q3" value="1"> <span data-en="A little" data-zh="有一點">A little</span></label><label><input type="radio" name="q3" value="2"> <span data-en="Yes" data-zh="會">Yes</span></label></div>
+      <div class="question"><p data-en="4. I feel pressure from school or life." data-zh="4. 我感受到來自學校或生活的壓力。">4. I feel pressure from school or life.</p><label><input type="radio" name="q4" value="0"> <span data-en="No" data-zh="不會">No</span></label><label><input type="radio" name="q4" value="1"> <span data-en="A little" data-zh="有一點">A little</span></label><label><input type="radio" name="q4" value="2"> <span data-en="Yes" data-zh="會">Yes</span></label></div>
+      <div class="question"><p data-en="5. I did not sleep well." data-zh="5. 我昨晚睡得不好。">5. I did not sleep well.</p><label><input type="radio" name="q5" value="0"> <span data-en="No" data-zh="不會">No</span></label><label><input type="radio" name="q5" value="1"> <span data-en="A little" data-zh="有一點">A little</span></label><label><input type="radio" name="q5" value="2"> <span data-en="Yes" data-zh="會">Yes</span></label></div>
+      <button class="main-btn" onclick="showPage('journal')" data-en="Next: Journal" data-zh="下一步：日記">Next: Journal</button></section>
+
+    <section id="journal" class="page"><div class="page-title"><span>✍️</span><h2 data-en="Daily Journal" data-zh="每日心情日記">Daily Journal</h2></div><div class="journal-layout"><div><label data-en="Write about your day:" data-zh="寫下你今天的感受：">Write about your day:</label><textarea id="journalText" data-placeholder-en="Today I feel..." data-placeholder-zh="我今天覺得..." placeholder="Today I feel..."></textarea><label data-en="One thing I am thankful for:" data-zh="我今天感謝的一件事：">One thing I am thankful for:</label><input type="text" id="gratefulText" data-placeholder-en="I am thankful for..." data-placeholder-zh="我感謝..." placeholder="I am thankful for..." /><h3 data-en="Small Goal for Today 🎯" data-zh="今日小目標 🎯">Small Goal for Today 🎯</h3><div class="goal-list"><label><input type="checkbox" class="goal"> <span data-en="Drink more water" data-zh="多喝水">Drink more water</span></label><label><input type="checkbox" class="goal"> <span data-en="Take a 10-minute walk" data-zh="散步 10 分鐘">Take a 10-minute walk</span></label><label><input type="checkbox" class="goal"> <span data-en="Listen to relaxing music" data-zh="聽放鬆音樂">Listen to relaxing music</span></label><label><input type="checkbox" class="goal"> <span data-en="Talk to a friend" data-zh="和朋友聊天">Talk to a friend</span></label><label><input type="checkbox" class="goal"> <span data-en="Sleep earlier tonight" data-zh="今晚早點睡">Sleep earlier tonight</span></label></div></div><div class="image-card journal-img"><div class="big-emoji">📓</div><h3 data-en="Write it down" data-zh="把心情寫下來">Write it down</h3><p data-en="Writing feelings can help students understand themselves better." data-zh="寫下心情可以幫助學生更了解自己。">Writing feelings can help students understand themselves better.</p></div></div><button class="main-btn" onclick="showPage('breathing')" data-en="Next: Breathing" data-zh="下一步：呼吸練習">Next: Breathing</button></section>
+
+    <section id="breathing" class="page"><div class="page-title"><span>🌬️</span><h2 data-en="Breathing Exercise" data-zh="呼吸練習">Breathing Exercise</h2></div><div class="card blue-card"><p data-en="Follow the circle. Breathe in when it grows, and breathe out when it becomes smaller." data-zh="跟著圓圈呼吸。圓圈變大時吸氣，變小時吐氣。">Follow the circle. Breathe in when it grows, and breathe out when it becomes smaller.</p></div><div class="breathing-circle" data-en="Breathe" data-zh="呼吸">Breathe</div><div class="card green-card"><p data-en="Tip: Try this for one minute when you feel stressed or anxious." data-zh="小提醒：當你感到壓力或焦慮時，可以試著做一分鐘。">Tip: Try this for one minute when you feel stressed or anxious.</p></div><button class="main-btn" onclick="calculateResult()" data-en="Show Result" data-zh="查看結果">Show Result</button></section>
+
+    <section id="statistics" class="page"><div class="page-title"><span>📊</span><h2 data-en="Statistics" data-zh="統計分析">Statistics</h2></div><div class="stats-layout"><div class="card purple-card"><h3 id="statsMood" data-en="Mood: Not selected" data-zh="心情：尚未選擇">Mood: Not selected</h3><p id="statsScore" data-en="Stress Score: 0 / 10" data-zh="壓力分數：0 / 10">Stress Score: 0 / 10</p><div class="bar-bg"><div id="statsBar" class="bar-fill">0%</div></div></div><div class="image-card"><div class="big-emoji">📈</div><h3 data-en="Future Chart" data-zh="未來圖表功能">Future Chart</h3><p data-en="Mood history, weekly report, and monthly report can be added later." data-zh="未來可以加入心情歷史紀錄、每週報告和每月報告。">Mood history, weekly report, and monthly report can be added later.</p></div></div></section>
+
+    <section id="feedback" class="page"><div class="page-title"><span>💬</span><h2 data-en="User Feedback" data-zh="使用者回饋">User Feedback</h2></div><div class="card orange-card"><p data-en="Please leave your feedback about this website." data-zh="請留下你對這個網站的回饋。">Please leave your feedback about this website.</p></div><textarea id="feedbackText" data-placeholder-en="I think this website is..." data-placeholder-zh="我覺得這個網站..." placeholder="I think this website is..."></textarea><button class="main-btn" onclick="submitFeedback()" data-en="Submit Feedback" data-zh="送出回饋">Submit Feedback</button><div id="feedbackResult" class="card green-card hidden"></div></section>
+
+    <section id="help" class="page"><div class="page-title"><span>☎️</span><h2 data-en="Help Center" data-zh="幫助中心">Help Center</h2></div><div class="help-grid"><div class="card red-card"><h3 data-en="Emergency" data-zh="緊急情況">Emergency</h3><p data-en="If you or someone else is in immediate danger, call emergency support now." data-zh="如果你或他人正處於立即危險中，請立刻撥打緊急電話。">If you or someone else is in immediate danger, call emergency support now.</p><p data-en="Taiwan: 110 Police / 119 Fire & Ambulance" data-zh="台灣：110 警察 / 119 消防與救護">Taiwan: 110 Police / 119 Fire & Ambulance</p></div><div class="card blue-card"><h3 data-en="Taiwan Mental Health Support" data-zh="台灣心理健康支援">Taiwan Mental Health Support</h3><p data-en="1925: Mental Health Support Line" data-zh="1925：安心專線">1925: Mental Health Support Line</p><p data-en="1995: Life Line" data-zh="1995：生命線">1995: Life Line</p><p data-en="1980: Teacher Chang Counseling" data-zh="1980：張老師專線">1980: Teacher Chang Counseling</p></div><div class="card green-card"><h3 data-en="Helpful Websites" data-zh="有幫助的網站">Helpful Websites</h3><p><a href="https://findahelpline.com/" target="_blank">Find a Helpline</a></p><p><a href="https://www.who.int/health-topics/mental-health" target="_blank">WHO Mental Health</a></p><p><a href="https://www.unicef.org/mental-health" target="_blank">UNICEF Mental Health</a></p></div><div class="card purple-card"><h3 data-en="People You Can Talk To" data-zh="你可以找誰聊聊">People You Can Talk To</h3><p data-en="A trusted friend, family member, teacher, school counselor, or doctor." data-zh="可以找值得信任的朋友、家人、老師、學校輔導老師或醫生。">A trusted friend, family member, teacher, school counselor, or doctor.</p></div></div></section>
+
+    <section id="result" class="page"><div class="page-title"><span>🌟</span><h2 data-en="Your Result" data-zh="你的結果">Your Result</h2></div><div class="bar-bg"><div id="progressBar" class="bar-fill">0%</div></div><div id="resultBox" class="result-box"><p data-en="Please complete the self-check first." data-zh="請先完成自我檢測。">Please complete the self-check first.</p></div><button class="main-btn" onclick="showPage('statistics')" data-en="View Statistics" data-zh="查看統計">View Statistics</button><button class="reset-btn" onclick="restart()" data-en="Try Again" data-zh="重新測驗">Try Again</button></section>
+  </main>
+  <footer><p data-en="Daily Mood & Stress Self-Check | SDG 3 Good Health and Well-Being" data-zh="每日心情與壓力自我檢測｜SDG 3 良好健康與福祉">Daily Mood & Stress Self-Check | SDG 3 Good Health and Well-Being</p></footer>
+  <script src="script.js"></script>
+</body>
+</html>
