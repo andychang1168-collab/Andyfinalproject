@@ -25,7 +25,9 @@
     </div>
   </header>
 
-  <nav>
+ <nav>
+
+  <div class="nav-left">
     <button onclick="showPage('home')">🏠 Home</button>
     <button onclick="showPage('mood')">😊 Mood</button>
     <button onclick="showPage('quiz')">📋 Quiz</button>
@@ -35,8 +37,22 @@
     <button onclick="showPage('feedback')">💬 Feedback</button>
     <button onclick="showPage('help')">☎️ Help</button>
     <button onclick="showPage('result')">🌟 Result</button>
-  </nav>
+  </div>
 
+  <div class="nav-right">
+
+    <select id="languageSelect" onchange="changeLanguage()">
+      <option value="en">English</option>
+      <option value="zh">繁體中文</option>
+    </select>
+
+    <button onclick="toggleDarkMode()">
+      🌙 Dark Mode
+    </button>
+
+  </div>
+
+</nav>
   <main class="container">
 
     <section id="home" class="page active">
