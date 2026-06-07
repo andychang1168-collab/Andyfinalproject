@@ -121,7 +121,24 @@ nav {
 
   box-shadow: 0 4px 15px rgba(0,0,0,0.12);
 }
+.nav-left {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
 
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-right select {
+  padding: 8px 12px;
+  border-radius: 20px;
+  border: none;
+  background: #f3f3f3;
+}
 nav button {
   background: linear-gradient(90deg, #7e57c2, #42a5f5);
   color: white;
