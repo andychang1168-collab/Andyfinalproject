@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daily Mood & Stress Self-Check</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>🌈 Daily Mood & Stress Self-Check</h1>
+    <p>Support SDG 3: Good Health and Well-Being</p>
+  </header>
+
+  <nav>
+    <button onclick="showPage('home')">Home</button>
+    <button onclick="showPage('mood')">Mood</button>
+    <button onclick="showPage('quiz')">Quiz</button>
+    <button onclick="showPage('journal')">Journal</button>
+    <button onclick="showPage('breathing')">Breathing</button>
+    <button onclick="showPage('statistics')">Statistics</button>
+    <button onclick="showPage('feedback')">Feedback</button>
+    <button onclick="showPage('help')">Help</button>
+    <button onclick="showPage('result')">Result</button>
+  </nav>
+
+  <main class="container">
+    <section id="home" class="page active">
+      <h2>Welcome 💖</h2>
+      <div class="card purple">
+        <p>This website helps students check their daily mood, stress level, and mental health condition in a simple way.</p>
+        <p>Users can answer a short quiz, write a journal, receive advice, and find useful mental health support resources.</p>
+      </div>
+      <div class="feature-grid">
+        <div class="mini-card">😊 Mood Check</div>
+        <div class="mini-card">📋 Stress Quiz</div>
+        <div class="mini-card">✍️ Daily Journal</div>
+        <div class="mini-card">🌬️ Breathing Exercise</div>
+        <div class="mini-card">📊 Statistics</div>
+        <div class="mini-card">☎️ Help Resources</div>
+      </div>
+      <button class="main-btn" onclick="showPage('mood')">Start Self-Check</button>
+    </section>
+
+    <section id="mood" class="page">
+      <h2>Mood Check 😊</h2>
+      <p>How do you feel today?</p>
+      <div class="mood-area">
+        <button class="mood-btn" onclick="chooseMood('Happy 😊')">😊 Happy</button>
+        <button class="mood-btn" onclick="chooseMood('Normal 😐')">😐 Normal</button>
+        <button class="mood-btn" onclick="chooseMood('Sad 😢')">😢 Sad</button>
+        <button class="mood-btn" onclick="chooseMood('Angry 😠')">😠 Angry</button>
+        <button class="mood-btn" onclick="chooseMood('Tired 😴')">😴 Tired</button>
+        <button class="mood-btn" onclick="chooseMood('Anxious 😟')">😟 Anxious</button>
+      </div>
+      <h3 id="moodText">No mood selected yet.</h3>
+      <div id="moodAdvice" class="card green">Choose your mood to get advice.</div>
+      <button class="main-btn" onclick="showPage('quiz')">Next: Stress Quiz</button>
+    </section>
+
+    <section id="quiz" class="page">
+      <h2>Stress Quiz 📋</h2>
+      <p>Choose one answer for each question.</p>
+      <div class="question"><p>1. I feel tired today.</p><label><input type="radio" name="q1" value="0"> No</label><label><input type="radio" name="q1" value="1"> A little</label><label><input type="radio" name="q1" value="2"> Yes</label></div>
+      <div class="question"><p>2. I feel nervous or worried.</p><label><input type="radio" name="q2" value="0"> No</label><label><input type="radio" name="q2" value="1"> A little</label><label><input type="radio" name="q2" value="2"> Yes</label></div>
+      <div class="question"><p>3. I cannot focus well.</p><label><input type="radio" name="q3" value="0"> No</label><label><input type="radio" name="q3" value="1"> A little</label><label><input type="radio" name="q3" value="2"> Yes</label></div>
+      <div class="question"><p>4. I feel pressure from school or life.</p><label><input type="radio" name="q4" value="0"> No</label><label><input type="radio" name="q4" value="1"> A little</label><label><input type="radio" name="q4" value="2"> Yes</label></div>
+      <div class="question"><p>5. I did not sleep well.</p><label><input type="radio" name="q5" value="0"> No</label><label><input type="radio" name="q5" value="1"> A little</label><label><input type="radio" name="q5" value="2"> Yes</label></div>
+      <button class="main-btn" onclick="showPage('journal')">Next: Journal</button>
+    </section>
+
+    <section id="journal" class="page">
+      <h2>Daily Journal ✍️</h2>
+      <label>Write about your day:</label>
+      <textarea id="journalText" placeholder="Today I feel..."></textarea>
+      <label>One thing I am thankful for:</label>
+      <input type="text" id="gratefulText" placeholder="I am thankful for..." />
+      <h3>Small Goal for Today 🎯</h3>
+      <div class="goal-list">
+        <label><input type="checkbox" class="goal"> Drink more water</label>
+        <label><input type="checkbox" class="goal"> Take a 10-minute walk</label>
+        <label><input type="checkbox" class="goal"> Listen to relaxing music</label>
+        <label><input type="checkbox" class="goal"> Talk to a friend</label>
+        <label><input type="checkbox" class="goal"> Sleep earlier tonight</label>
+      </div>
+      <button class="main-btn" onclick="showPage('breathing')">Next: Breathing</button>
+    </section>
+
+    <section id="breathing" class="page">
+      <h2>Breathing Exercise 🌬️</h2>
+      <div class="card blue"><p>Follow the circle. Breathe in when it grows, and breathe out when it becomes smaller.</p></div>
+      <div class="breathing-circle">Breathe</div>
+      <div class="card green"><p><strong>Tip:</strong> Try this for one minute when you feel stressed or anxious.</p></div>
+      <button class="main-btn" onclick="calculateResult()">Show Result</button>
+    </section>
+
+    <section id="statistics" class="page">
+      <h2>Mood Statistics 📊</h2>
+      <div class="card purple"><p>This section shows a simple mood and stress summary after users complete the self-check.</p></div>
+      <div class="stats-box">
+        <h3 id="statsMood">Mood: Not selected</h3>
+        <p id="statsScore">Stress Score: 0 / 10</p>
+        <div class="bar-bg"><div id="statsBar" class="bar-fill">0%</div></div>
+      </div>
+      <div class="card blue"><h3>Future Improvement</h3><p>Mood history records, weekly charts, and monthly reports can be added in the future.</p></div>
+    </section>
+
+    <section id="feedback" class="page">
+      <h2>User Feedback 💬</h2>
+      <p>Please leave your feedback about this website:</p>
+      <textarea id="feedbackText" placeholder="I think this website is..."></textarea>
+      <button class="main-btn" onclick="submitFeedback()">Submit Feedback</button>
+      <div id="feedbackResult" class="card green hidden"></div>
+    </section>
+
+    <section id="help" class="page">
+      <h2>Help Center ☎️</h2>
+      <div class="card red"><h3>Emergency</h3><p>If you or someone else is in immediate danger, call emergency support now.</p><p><strong>Taiwan:</strong> 110 Police / 119 Fire & Ambulance</p></div>
+      <div class="card blue"><h3>Taiwan Mental Health Support</h3><p><strong>1925:</strong> Mental Health Support Line</p><p><strong>1995:</strong> Life Line</p><p><strong>1980:</strong> Teacher Chang Counseling</p></div>
+      <div class="card green"><h3>Helpful Websites</h3><p><a href="https://findahelpline.com/" target="_blank">Find a Helpline</a></p><p><a href="https://www.who.int/health-topics/mental-health" target="_blank">WHO Mental Health</a></p><p><a href="https://www.unicef.org/mental-health" target="_blank">UNICEF Mental Health</a></p></div>
+      <div class="card purple"><h3>People You Can Talk To</h3><p>A trusted friend, family member, teacher, school counselor, or doctor.</p></div>
+    </section>
+
+    <section id="result" class="page">
+      <h2>Your Result 🌟</h2>
+      <div class="bar-bg"><div id="progressBar" class="bar-fill">0%</div></div>
+      <div id="resultBox" class="result-box"><p>Please complete the self-check first.</p></div>
+      <button class="main-btn" onclick="showPage('statistics')">View Statistics</button>
+      <button class="reset-btn" onclick="restart()">Try Again</button>
+    </section>
+  </main>
+
+  <footer><p>Daily Mood & Stress Self-Check | SDG 3 Good Health and Well-Being</p></footer>
+  <script src="script.js"></script>
+</body>
+</html>
