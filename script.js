@@ -147,62 +147,32 @@ function restart() {
 document.addEventListener("DOMContentLoaded", function () {
   showPage("home");
 });
-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+function toggleDarkMode() {
+  document.body.classList.toggle("dark-mode");
 }
 
-.nav-left {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
+function changeLanguage() {
+  const lang = document.getElementById("languageSelect").value;
 
-.nav-right {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-left: auto;
-}
-
-.nav-right select {
-  padding: 9px 12px;
-  border-radius: 20px;
-  border: none;
-  background: white;
-  color: #333;
-  font-weight: bold;
-}
-
-/* Dark Mode */
-.dark-mode {
-  background: #121212 !important;
-  color: white !important;
-}
-
-.dark-mode .page {
-  background: #1f1f1f !important;
-  color: white !important;
-}
-
-.dark-mode nav {
-  background: #222 !important;
-}
-
-.dark-mode .card,
-.dark-mode .image-card,
-.dark-mode .question,
-.dark-mode .mini-card,
-.dark-mode .result-box {
-  color: white !important;
-  background: #2b2b2b !important;
-}
-
-.dark-mode textarea,
-.dark-mode input,
-.dark-mode select {
-  background: #333 !important;
-  color: white !important;
-  border-color: #777 !important;
+  if (lang === "zh") {
+    document.querySelector("#home h2").innerText = "首頁";
+    document.querySelector("#mood h2").innerText = "心情檢查";
+    document.querySelector("#quiz h2").innerText = "壓力測驗";
+    document.querySelector("#journal h2").innerText = "每日心情日記";
+    document.querySelector("#breathing h2").innerText = "呼吸練習";
+    document.querySelector("#statistics h2").innerText = "統計資料";
+    document.querySelector("#feedback h2").innerText = "使用者回饋";
+    document.querySelector("#help h2").innerText = "幫助中心";
+    document.querySelector("#result h2").innerText = "你的結果";
+  } else {
+    document.querySelector("#home h2").innerText = "Home";
+    document.querySelector("#mood h2").innerText = "Mood Check";
+    document.querySelector("#quiz h2").innerText = "Stress Quiz";
+    document.querySelector("#journal h2").innerText = "Daily Journal";
+    document.querySelector("#breathing h2").innerText = "Breathing Exercise";
+    document.querySelector("#statistics h2").innerText = "Statistics";
+    document.querySelector("#feedback h2").innerText = "User Feedback";
+    document.querySelector("#help h2").innerText = "Help Center";
+    document.querySelector("#result h2").innerText = "Your Result";
+  }
 }
